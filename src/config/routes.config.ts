@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 export const setupRoutes = async(app:Express)=>{
-	const pathRoutes = path.join(__dirname,'../routes');
+	const pathRoutes = path.join(__dirname, '../routes');
 	const routesPaths = fs.readdirSync(pathRoutes);
 	const promises = routesPaths.map(async(routerPath)=>{
 		if((/\.route\.ts$/).test(routerPath) ){

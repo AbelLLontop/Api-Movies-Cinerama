@@ -1,5 +1,5 @@
 import express from 'express';
-import {ErrorMiddleware} from './middlewares/error.middleware';
+import {ErrorMiddleware} from './middlewares/ErrorMiddleware';
 import {setupRoutes} from './config';
 const app = express();
 
