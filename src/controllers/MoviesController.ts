@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { CineramaScrapperService } from '../services/CineramaScrapperService';
+import { MoviesService } from '../services/MoviesService';
 import { SuccessResponse } from '../handlers/ResponseHandlers';
 
 export class MovieController{
@@ -8,11 +8,12 @@ export class MovieController{
 
 	getMovies = async (req:Request, res:Response, next:NextFunction) => {
 		try{
-			const cineramaService = new CineramaScrapperService();
-			const moviesList = await cineramaService.getMovies();
+			const moviesService = new MoviesService();
+			const moviesList = await moviesService.getMovies();
 			return SuccessResponse(res, moviesList);
 		}catch(e){ 
 			next(e);
 		}
 	};
+	
 }

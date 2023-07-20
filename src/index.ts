@@ -1,6 +1,9 @@
 import express from 'express';
 import {ErrorMiddleware} from './middlewares/ErrorMiddleware';
 import {setupRoutes} from './config';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
 
 const initiMiddleware = (app: express.Express) => {
@@ -14,6 +17,11 @@ const initiMiddleware = (app: express.Express) => {
 	});
 	app.use(ErrorMiddleware as any);
 };
+mongoose.connect(process.env.MONGODB_URI as string).then(()=>{
+	console.log('Connected to MongoDB');
+}).catch((err)=>{
+	console.error('Error connecting to MongoDB', err);
+});
 
 setupRoutes(app).then(() => {
 	initiMiddleware(app);
